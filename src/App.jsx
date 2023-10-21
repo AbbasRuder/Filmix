@@ -5,6 +5,8 @@ import fetchData from './utils/fetchData'
 // -redux
 import { useDispatch, useSelector } from 'react-redux'
 import { getApiConfiguration } from './store/homeSlice'
+// -react-router 
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // -components
 import {
   PageNotFound,
@@ -37,19 +39,34 @@ export default function App() {
       .catch(error => console.log(error))
   }
 
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home />,
+    },
+    {
+      path: '/:mediaType/:id',
+      element: <Details />
+    },
+    {
+      path: '/search/:query',
+      element: <SearchResult />
+    },
+    {
+      path: '/explore/:mediaType',
+      element: <Explore />
+    },
+    {
+      path: '*',
+      element: <PageNotFound />
+    }
+
+  ])
+
   return (
     <>
-      <h1>
-        Movie app setup
-      </h1>
-
-      <Home />
-      <Details />
-      <PageNotFound />
-      <Explore />
-      <SearchResult />
-
       <Header />
+      <RouterProvider router={router} />
       <Footer />
     </>
   )
