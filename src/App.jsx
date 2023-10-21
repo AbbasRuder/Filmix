@@ -1,14 +1,28 @@
 import { useEffect } from 'react'
 import './App.css'
+// -utils
 import fetchData from './utils/fetchData'
+// -redux
 import { useDispatch, useSelector } from 'react-redux'
 import { getApiConfiguration } from './store/homeSlice'
+// -components
+import {
+  PageNotFound,
+  Details,
+  Explore,
+  Home,
+  SearchResult
+} from "./pages"
+import {
+  Header,
+  Footer
+} from './components'
 
-function App() {
+
+export default function App() {
   const dispatch = useDispatch()
   const url = useSelector(state => state.home.url)
   console.log('url', url)
-
 
   useEffect(() => {
     fetchApiData()
@@ -25,12 +39,18 @@ function App() {
 
   return (
     <>
-      <p>
+      <h1>
         Movie app setup
-      </p>
+      </h1>
 
+      <Home />
+      <Details />
+      <PageNotFound />
+      <Explore />
+      <SearchResult />
+
+      <Header />
+      <Footer />
     </>
   )
 }
-
-export default App
