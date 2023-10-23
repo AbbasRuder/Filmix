@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
-import './App.css'
 // -utils
-import fetchData from './utils/fetchData'
+import fetchDataFromApi from './utils/fetchData'
 // -redux
 import { useDispatch, useSelector } from 'react-redux'
 import { getApiConfiguration } from './store/homeSlice'
@@ -24,17 +23,20 @@ import {
 export default function App() {
   const dispatch = useDispatch()
   const url = useSelector(state => state.home.url)
-  console.log('url', url)
 
   useEffect(() => {
-    fetchApiData()
+    callFetchApi()
   }, [])
 
-  const fetchApiData = () => {
-    fetchData("movie/popular")
+  const callFetchApi = () => {
+    fetchDataFromApi("/configuration")
       .then(res => {
-        console.log(res)
-        dispatch(getApiConfiguration(res))
+        const url = {
+          backdrop: res.images.secure_base_url + "original",
+          poster: res.images.secure_base_url + "original",
+          profile: res.images.secure_base_url + "original"
+        }
+        dispatch(getApiConfiguration(url))
       })
       .catch(error => console.log(error))
   }
@@ -65,9 +67,9 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <RouterProvider router={router} />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
