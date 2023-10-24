@@ -28,7 +28,6 @@ export default function Header() {
 
   // -Navbar starts with 'blur', if scrolling down then hide the navbar and if scrolling up then show the navbar
   const controlNavbarOnScroll = () => {
-    setLastScrollY(window.scrollY)
     if(window.scrollY > 200) {
       if(window.scrollY > lastScrollY && !mobileMenu) {
         setNavbarView("hide")
@@ -38,6 +37,7 @@ export default function Header() {
     } else {
       setNavbarView("blur")
     }
+    setLastScrollY((current) => window.scrollY)
   }
  
   useEffect(() => {
