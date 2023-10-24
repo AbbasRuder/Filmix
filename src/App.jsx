@@ -16,7 +16,8 @@ import {
 } from "./pages"
 import {
   Header,
-  Footer
+  Footer,
+  Layout
 } from './components'
 
 
@@ -44,32 +45,35 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home />,
-    },
-    {
-      path: '/:mediaType/:id',
-      element: <Details />
-    },
-    {
-      path: '/search/:query',
-      element: <SearchResult />
-    },
-    {
-      path: '/explore/:mediaType',
-      element: <Explore />
-    },
-    {
-      path: '*',
-      element: <PageNotFound />
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: '/:mediaType/:id',
+          element: <Details />
+        },
+        {
+          path: '/search/:query',
+          element: <SearchResult />
+        },
+        {
+          path: '/explore/:mediaType',
+          element: <Explore />
+        },
+        {
+          path: '*',
+          element: <PageNotFound />
+        }
+      ]
     }
-
   ])
 
   return (
     <>
-      {/* <Header /> */}
       <RouterProvider router={router} />
-      {/* <Footer /> */}
     </>
   )
 }
