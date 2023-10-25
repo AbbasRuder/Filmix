@@ -4,6 +4,8 @@ import Img from "./lazyLoader/Img"
 import ContentWrapper from "./contentWrapper/ContentWrapper"
 import Layout from "./layout/Layout";
 import SwitchTabs from "./switchTabs/SwitchTabs";
+import Carousel from "./carousel/Carousel";
+import MovieRatingCircle from "./movieRatingCircle/MovieRatingCircle";
 
 export {
     Header, 
@@ -11,5 +13,7 @@ export {
     Img,
     ContentWrapper,
     Layout,
-    SwitchTabs
+    SwitchTabs,
+    Carousel,
+    MovieRatingCircle
 }
