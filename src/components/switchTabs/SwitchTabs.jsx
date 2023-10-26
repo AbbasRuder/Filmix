@@ -3,7 +3,7 @@ import { useState } from "react"
 import "./style.scss";
 
 
-export default function SwitchTabs({ data, onTabSwitch }) {
+export default function SwitchTabs({ tabItems, onTabSwitch }) {
 
   const [selectedTab, setSelectedTab] = useState(0);
   // -to position the bg-gradient
@@ -15,13 +15,14 @@ export default function SwitchTabs({ data, onTabSwitch }) {
     setTimeout(() => {
       setSelectedTab(index)
     }, 300);
-    onTabSwitch(tabItem, index)
+
+    onTabSwitch(tabItem)
   }
  
   return (
     <div className="switchingTabs">
       <div className="tabItems">
-        {data.map((tabItem, index) => (
+        {tabItems.map((tabItem, index) => (
           <span
             key={index}
             className={`tabItem ${selectedTab === index ? 'active' : ''}`}
