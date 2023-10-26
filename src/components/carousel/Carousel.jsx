@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 // -rrd
 import { useNavigate } from "react-router-dom";
 
-export default function Carousel({ data, loading}) {
+export default function Carousel({ data, loading, navigationType}) {
 
     const navigate = useNavigate()
 
@@ -87,7 +87,7 @@ export default function Carousel({ data, loading}) {
                             return (
                                 <div className="carouselItem" 
                                     key={item.id}
-                                    onClick={() => navigate(`${item.media_type}/${item.id}`)}
+                                    onClick={() => navigate(`${item.media_type || navigationType}/${item.id}`)}
                                 >
                                     <div className="posterBlock">
                                         <Img src={posterURL} />
