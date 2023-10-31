@@ -3,7 +3,7 @@ import useFetch from '../../hooks/useFetch'
 import { useParams } from 'react-router-dom'
 // -components
 import MainDetails from './mainDetails/MainDetails'
-import Cast from './cast/cast'
+import Cast from "./castDetails/Cast"
 import MovieVideos from './movieVideos/MovieVideos'
 
 export default function Details() {
@@ -20,4 +20,5 @@ export default function Details() {
       <MovieVideos videosData={VideosData} loading={VideosLoading} />
     </>
   )
+
 }

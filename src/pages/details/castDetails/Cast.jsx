@@ -9,7 +9,6 @@ import { useSelector } from "react-redux"
 export default function Cast({ castData, loading }) {
 
     const { url } = useSelector(state => state.home)
-    // console.log(url)
 
     const skeleton = () => {
         return (
