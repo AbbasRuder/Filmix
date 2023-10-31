@@ -87,7 +87,7 @@ export default function Carousel({ data, loading, navigationType}) {
                             return (
                                 <div className="carouselItem" 
                                     key={item.id}
-                                    onClick={() => navigate(`${item.media_type || navigationType}/${item.id}`)}
+                                    onClick={() => navigate(`/${item.media_type || navigationType}/${item.id}`)}
                                 >
                                     <div className="posterBlock">
                                         <Img src={posterURL} />
