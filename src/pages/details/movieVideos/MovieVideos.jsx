@@ -23,44 +23,46 @@ export default function MovieVideos({ videosData, videosLoading }) {
     };
 
     return (
-        <div className="videosSection">
-            <ContentWrapper>
-                <div className="sectionHeading">Official Videos</div>
-                {videosLoading ? (
-                    <div className="videoSkeleton">
-                        {loadingSkeleton()}
-                        {loadingSkeleton()}
-                        {loadingSkeleton()}
-                        {loadingSkeleton()}
-                        {loadingSkeleton()}
-                    </div>
-                ) : (
-                    <div className="videos">
-                        {videosData?.results?.map(videoItem => {
-                            return (
-                                <div
-                                    key={videoItem.id}
-                                    className="videoItem"
-                                    onClick={() => handleVideoPopup(videoItem.key)}
-                                >
-                                    <div className="videoThumbnail">
-                                        <Img src={`https://img.youtube.com/vi/${videoItem.key}/mqdefault.jpg`} />
-                                        <PlayIcon />
+        videosData?.results.length > 0 && (
+            <div className="videosSection">
+                <ContentWrapper>
+                    <div className="sectionHeading">Official Videos</div>
+                    {videosLoading ? (
+                        <div className="videoSkeleton">
+                            {loadingSkeleton()}
+                            {loadingSkeleton()}
+                            {loadingSkeleton()}
+                            {loadingSkeleton()}
+                            {loadingSkeleton()}
+                        </div>
+                    ) : (
+                        <div className="videos">
+                            {videosData?.results?.map(videoItem => {
+                                return (
+                                    <div
+                                        key={videoItem.id}
+                                        className="videoItem"
+                                        onClick={() => handleVideoPopup(videoItem.key)}
+                                    >
+                                        <div className="videoThumbnail">
+                                            <Img src={`https://img.youtube.com/vi/${videoItem.key}/mqdefault.jpg`} />
+                                            <PlayIcon />
+                                        </div>
+                                        <div className="videoTitle">{videoItem.name}</div>
                                     </div>
-                                    <div className="videoTitle">{videoItem.name}</div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                )}
-            </ContentWrapper>
+                                )
+                            })}
+                        </div>
+                    )}
+                </ContentWrapper>
 
-            <VideoPopup
-                show={show}
-                setShow={setShow}
-                videoID={videoID}
-                setVideoID={setVideoID}
-            />
-        </div>
+                <VideoPopup
+                    show={show}
+                    setShow={setShow}
+                    videoID={videoID}
+                    setVideoID={setVideoID}
+                />
+            </div>
+        )
     )
 }
