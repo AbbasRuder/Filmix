@@ -46,6 +46,9 @@
                 @include md {
                     width: 250px;
                 }
+                @include lg {
+                    width: 350px;
+                }
             }
             .react-select__control {
                 border: 0;
@@ -66,6 +69,7 @@
                 .react-select__multi-value {
                     background-color: var(--black3);
                     border-radius: 10px;
+                    padding: 2px 4px;
                     .react-select__multi-value__label {
                         color: white;
                     }
@@ -75,6 +79,10 @@
                         cursor: pointer;
                         &:hover {
                             color: var(--black-lighter);
+                        }
+                        // to reduce the default width of the svg container
+                        .css-tj5bde-Svg {
+                            width: 20px;
                         }
                     }
                 }
