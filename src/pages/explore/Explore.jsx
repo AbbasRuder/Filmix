@@ -85,10 +85,30 @@ export default function Explore() {
   useEffect(() => {
     setGenre(null)
     setSortBy(null)
-    // -fetching initial data with no parameters
-    fetchInitialData()
+
+    const saved_sortby = JSON.parse(localStorage.getItem('sortby'))
+    // -if there are data saved in localStorage
+    if (saved_sortby) {
+      // -and if we are exploring tv-shows and trying to sort it using revenue(which is not available for tv)
+      if (mediaType === "tv" && saved_sortby.label.includes("Revenue")) {
+        localStorage.removeItem('sortby')
+        fetchInitialData()
+      // -sorting by anything else 
+      } else {
+        filters.sort_by = saved_sortby.value
+        setSortBy(saved_sortby)
+        fetchInitialData(filters)
+      }
+    // -if there are no data saved in localStorage
+    } else {
+      // -fetching initial data with no parameters(filters)
+      fetchInitialData()
+    }
+
   }, [mediaType])
 
+
+  // -handling both the filter selections. `selectedItem` and `action` are both automatically passed on as a argument to the onchange function by the react-select lib.
   const handleFilterSelection = (selectedItem, action) => {
     if (action.name === "genres") {
       setGenre(selectedItem)
@@ -105,7 +125,9 @@ export default function Explore() {
       setSortBy(selectedItem)
       if (action.action !== "clear") {
         filters.sort_by = selectedItem.value
+        localStorage.setItem('sortby', JSON.stringify(selectedItem))
       } else {
+        localStorage.removeItem('sortby')
         delete filters.sort_by
       }
     }
