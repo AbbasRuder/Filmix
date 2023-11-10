@@ -6,10 +6,11 @@ import { SlInfo, SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
 // -react-router-dom
 import { useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // -components
 import { ContentWrapper } from "../../components"
 // -assets
-import logo from "../../assets/movix-logo.svg"
+import logo from "../../assets/filmix-logo.svg"
 
 export default function Header() {
   const [navbarView, setNavbarView] = useState("blur")
@@ -28,8 +29,8 @@ export default function Header() {
 
   // -Navbar starts with 'blur', if scrolling down then hide the navbar and if scrolling up then show the navbar
   const controlNavbarOnScroll = () => {
-    if(window.scrollY > 200) {
-      if(window.scrollY > lastScrollY && !mobileMenu) {
+    if (window.scrollY > 200) {
+      if (window.scrollY > lastScrollY && !mobileMenu) {
         setNavbarView("hide")
       } else {
         setNavbarView("solid")
@@ -39,7 +40,7 @@ export default function Header() {
     }
     setLastScrollY((current) => window.scrollY)
   }
- 
+
   useEffect(() => {
     document.addEventListener('scroll', controlNavbarOnScroll)
     return () => document.removeEventListener('scroll', controlNavbarOnScroll)
@@ -68,7 +69,7 @@ export default function Header() {
   }
 
   const handleNavigation = (mediaType) => {
-    if(mediaType === 'movie') {
+    if (mediaType === 'movie') {
       navigate('/explore/movie')
     } else {
       navigate('/explore/tv')
@@ -79,7 +80,9 @@ export default function Header() {
     <header className={`header ${mobileMenu && 'mobileView'} ${navbarView}`}>
       <ContentWrapper>
         <div className="logo">
-          <img src={logo} alt="" />
+          <Link to={'/'}>
+            <img src={logo} alt="Site logo" />
+          </Link>
         </div>
         <ul className="menuItems">
           <li className="menuItem" onClick={() => handleNavigation('movie')}>
@@ -89,7 +92,7 @@ export default function Header() {
             TV Shows
           </li>
           <li className="menuItem">
-            <HiOutlineSearch onClick={openSearch}/>
+            <HiOutlineSearch onClick={openSearch} />
           </li>
         </ul>
 

@@ -29,8 +29,10 @@
     }
     .logo {
         cursor: pointer;
-        img {
-            height: 50px;
+        a {
+            img {
+                height: 50px;
+            }
         }
     }
     .menuItems {
